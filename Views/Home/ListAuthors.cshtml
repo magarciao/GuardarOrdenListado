@@ -16,7 +16,7 @@
     }
 </style>
 
-<h1>Lista de Autores</h1>
+<h1>(Usuario: @ViewBag.UserName) Lista de Autores</h1>
 
 <div name="table" class="tg-grid">
 
@@ -28,7 +28,7 @@
         <div></div>
     </div>
 
-    <div class="lista" id="lista" keyList="1,@ViewBag.IdUser">
+    <div id="lista" keyList="1,@ViewBag.IdUser">
         @foreach (var item in Model) {
             <div class="item" data-id="@item.Id" label-grid="row" tgcolumns="row">
 		        <div></div>

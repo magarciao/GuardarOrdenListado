@@ -26,10 +26,10 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
             </td>
             <td>
-                @Html.ActionLink("Autores", "ListAuthors", "Home", new { @IdUser = item.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Autores", "ListAuthors", "Home", new { @IdUser = item.Id, @UserName = $"{item.FirstName} {item.LastName}" }, new { @class = "btn btn-primary" })
             </td>
         </tr>
     }

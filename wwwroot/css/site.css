@@ -16,3 +16,52 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*Centra el objeto en vertical y horizontal*/
+.alingXcenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*Centra el objeto en vertical*/
+.alingVcenter {
+    display: flex;
+    align-items: center;
+}
+
+/*Centra el objeto en vertical y a la derecha*/
+.alingVRcenter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/*Centra el objeto en horizontal*/
+.alingHcenter {
+    display: flex;
+    justify-content: center;
+}
+/********************************************************************************************/
+
+/* tg-grid - Configura el formato de un listado */
+.tg-grid [label-grid="header"] {
+    background-color: #8F99A4;
+    height: 30px;
+    color: #fff;
+}
+
+.tg-grid [label-grid="row"]:nth-child(odd) {
+    background-color: #DFDFDF;
+    height: 60px;
+}
+
+.tg-grid [label-grid="row"]:nth-child(even) {
+    background-color: #EBEBEB;
+    height: 60px;
+}
+
+.tg-grid [label-grid="row"]:hover {
+    background-color: #bdbdbd;
+}
+/*******************************************************************************/

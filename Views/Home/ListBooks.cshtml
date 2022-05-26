@@ -16,7 +16,7 @@
     }
 </style>
 
-<h1>Listado de libros del autor @ViewBag.AuthorName</h1>
+<h1>(Usuario: @ViewBag.UserName) Listado de libros del autor @ViewBag.AuthorName</h1>
 
 <div name="table" class="tg-grid">
 
@@ -26,7 +26,7 @@
 		<div class="alingVcenter">Nombre del Libro</div>
     </div>
 
-    <div class="lista" id="lista" keyList="2,@ViewBag.IdUser,@ViewBag.IdAuthor">
+    <div id="lista" keyList="2,@ViewBag.IdUser,@ViewBag.IdAuthor">
         @foreach (var item in Model) {
             <div class="item" data-id="@item.Id" label-grid="row" tgcolumns="row">
 		        <div></div>
@@ -38,4 +38,4 @@
 
 </div>
 
-<p class="pt-2">@Html.ActionLink("Autores", "ListAuthors", "Home", new { @IdUser = ViewBag.IdUser }, new { @class = "btn btn-primary" })</p>
+<p class="pt-2">@Html.ActionLink("Autores", "ListAuthors", "Home", new { @IdUser = ViewBag.IdUser, @UserName = ViewBag.UserName }, new { @class = "btn btn-primary" })</p>

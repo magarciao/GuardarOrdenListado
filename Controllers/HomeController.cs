@@ -34,19 +34,21 @@ namespace GuardarOrdenListado.Controllers
 
         public async Task<IActionResult> ListUsers()
         {
-            List<Users> users = dbContext.Users.ToList();
+            List<Users> users = await Task.FromResult(dbContext.Users.ToList());
 
             return View(users);
         }
 
-        public async Task<IActionResult> ListAuthors(int IdUser)
+        public async Task<IActionResult> ListAuthors(int IdUser, string UserName)
         {
-            List<Authors> authors = dbContext.Authors.ToList();
+            List<Authors> authors = await Task.FromResult(dbContext.Authors.ToList());
 
             ListOrderedForUser listOrderedForUser = new ListOrderedForUser($"1,{IdUser}", authors, "Id", null, dbContext);
 
             HttpContext.Session.SetInt32("IdUser", IdUser);
+            HttpContext.Session.SetString("UserName", UserName);
             ViewBag.IdUser = IdUser;
+            ViewBag.UserName = UserName;
 
             return View(authors.OrderBy(x => x.Sort).ToList());
         }
@@ -55,13 +57,16 @@ namespace GuardarOrdenListado.Controllers
         {
             int IdUser = Convert.ToInt32(HttpContext.Session.GetInt32("IdUser"));
 
-            List<Books> books = dbContext.Books.Where(x => x.IdAuthor == IdAuthor).ToList();
+            List<Books> books = await Task.FromResult(dbContext.Books.Where(x => x.IdAuthor == IdAuthor).ToList());
 
             ListOrderedForUser listOrderedForUser = new ListOrderedForUser($"2,{IdUser},{IdAuthor}", books, "Id", null, dbContext);
 
+            Authors? authors = await dbContext.Authors.FindAsync(IdAuthor);
+
             ViewBag.IdUser = IdUser;
+            ViewBag.UserName = HttpContext.Session.GetString("UserName");
             ViewBag.IdAuthor = IdAuthor;
-            ViewBag.AuthorName = dbContext.Authors.Find(IdAuthor).NameAuthor;
+            ViewBag.AuthorName = authors.NameAuthor;
 
             return View(books.OrderBy(x => x.Sort).ToList());
         }

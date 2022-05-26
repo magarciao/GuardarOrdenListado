@@ -6,7 +6,7 @@ namespace GuardarOrdenListado.Context
     {
         public int Id { get; set; }
         public int IdAuthor { get; set; }
-        public string NameBook { get; set; }
+        public string? NameBook { get; set; }
 
         [NotMapped]
         public int Sort { get; set; }

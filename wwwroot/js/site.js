@@ -47,3 +47,25 @@ Sortable.create(lista, {
         }
     }
 });
+
+async function postData(url = '', data = {}) {
+    // Opciones por defecto estan marcadas con un *
+    const dataResponse = await fetch(url, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
+    });
+
+    if (!dataResponse.ok) {
+        const message = dataResponse.status;
+        throw new Error(message);
+    }
+
+    const response = await dataResponse.json();
+    return response; // parses JSON response into native JavaScript objects
+}
